@@ -9,7 +9,7 @@ class Command(BaseCommand):
     help = "A command to start a bot"
 
     def handle(self, *args, **kwargs):
-        Thread(target=lambda: self.start_bot()).start()
+        Thread(target=lambda: self.set_webhook()).start()
 
-    def start_bot(self):
+    def set_webhook(self):
         start_telegram_bot()

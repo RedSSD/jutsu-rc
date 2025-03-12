@@ -4,14 +4,9 @@ import requests
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
 
-from config.settings import TELEGRAM_API_URL, TELEGRAM_WEBHOOK_URL
+from config.settings import TELEGRAM_API_URL
 
-from .message_templates import BOT_KEYBOARD
-
-
-def setwebhook(request):
-    """Sets the webhook for the Telegram bot."""
-
+from .message_templates import *
 
 
 @csrf_exempt
@@ -52,7 +47,7 @@ def send_welcome_message(chat_id):
     """Sends a welcome message with a keyboard to the user."""
     payload = {
         "chat_id": chat_id,
-        "text": "Welcome! Choose an option:",
+        "text": WELCOME_TEXT,
         "reply_markup": json.dumps(BOT_KEYBOARD)
     }
     response = send_message("sendMessage", payload)
